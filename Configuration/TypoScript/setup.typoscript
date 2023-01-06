@@ -1,0 +1,9 @@
+plugin.tx_hhtalentstormjobposts {
+    settings {
+        talentstorm {
+            apiUrl = {$plugin.tx_hhtalentstormjobposts.settings.talentstorm.apiUrl}
+            apiKey = {$plugin.tx_hhtalentstormjobposts.settings.talentstorm.apiKey}
+            storagePid = {$plugin.tx_hhtalentstormjobposts.settings.talentstorm.storagePid}
+        }
+    }
+}

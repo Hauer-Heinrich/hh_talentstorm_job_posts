@@ -1,0 +1,18 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  HauerHeinrich\HhTalentstormJobPosts\EventListener\TalentstormJobpostsListener:
+    tags:
+      - name: event.listener
+        identifier: 'talentstorm-jobposts-listener'
+        method: 'getExternalJobpostsFromApi'
+        event: HauerHeinrich\HhSimpleJobPosts\Event\JobpostsListEvent
+
+  HauerHeinrich\HhTalentstormJobPosts\Http\TalentstormRequest:
+    public: true
+
+  HauerHeinrich\HhTalentstormJobPosts\Utility\TalentstormJobpostMapper:
+    public: true

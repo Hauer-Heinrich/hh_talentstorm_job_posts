@@ -1,0 +1,12 @@
+plugin.tx_hhtalentstormjobposts {
+    settings {
+        talentstorm {
+            # cat=plugin.tx_hhtalentstormjobposts/talentstorm; type=string; label=API-Endpoint
+            apiUrl = https://api.talentstorm.de/api/v1/joboffers/basic/[SLUG_PORTAL]
+            # cat=plugin.tx_hhtalentstormjobposts/talentstorm; type=string; label=API-Key
+            apiKey =
+            # cat=plugin.tx_hhtalentstormjobposts/talentstorm; type=integer; label=Storage PID
+            storagePid =
+        }
+    }
+}
