@@ -11,15 +11,15 @@
  ***************************************************************/
 
 $EM_CONF['hh_talentstorm_job_posts'] = [
-    'title' => 'Hauer-Heinrich - TODO:',
-    'description' => 'TODO:',
+    'title' => 'Hauer-Heinrich - Simple job posts',
+    'description' => 'Add Talentstorm jobs for EXT: hh_simple_job_posts.',
     'category' => 'plugin',
     'author' => 'Christian Hackl',
     'author_email' => 'chackl@hauer-heinrich.de',
     'state' => 'beta',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '1.0.1',
+    'version' => '1.0.2',
     'constraints' => [
         'depends' => [
             'typo3' => '10.4.0-10.4.99',

@@ -1,28 +1,46 @@
 {
-    "name": "hauer-heinrich/hh-talentstorm-job-posts",
+    "name": "hauerheinrich/hh-talentstorm-job-posts",
     "type": "typo3-cms-extension",
-    "description": "TODO:",
+    "description": "Add Talentstorm jobs for EXT: hh_simple_job_posts.",
     "authors": [
         {
             "name": "Christian Hackl",
+            "email": "chackl@hauer-heinrich.de",
+            "homepage": "http://www.hauer-heinrich.de",
             "role": "Developer"
         }
     ],
+    "support": {
+        "issues": "https://github.com/Hauer-Heinrich/hh_talentstorm_job_posts/issues",
+        "source": "https://github.com/Hauer-Heinrich/hh_talentstorm_job_posts",
+        "docs": "https://github.com/Hauer-Heinrich/hh_talentstorm_job_posts/blob/master/README.md"
+    },
+    "funding": [
+        {
+            "type": "paypal",
+            "url": "https://www.paypal.com/paypalme/hauerheinrich"
+        }
+    ],
+    "version": "1.0.2",
+    "license": ["GPL-2.0-or-later"],
+    "keywords": ["TYPO3 CMS", "jobs", "Extension"],
+    "replace": {
+        "hauer-heinrich/hh_talentstorm_job_posts": "self.version",
+        "typo3-ter/hh-talentstorm-job-posts": "self.version"
+    },
     "require": {
-        "typo3/cms-core": "^10.4",
-        "hauer-heinrich/hh-simple-job-posts": ""
+        "typo3/cms-core": "^10.4.0 || ^11.5.0"
     },
     "autoload": {
         "psr-4": {
             "HauerHeinrich\\HhTalentstormJobPosts\\": "Classes"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "HauerHeinrich\\HhTalentstormJobPosts\\Tests\\": "Tests"
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/Web",
+            "extension-key": "hh_talentstorm_job_posts"
         }
-    },
-    "replace": {
-        "typo3-ter/hh-talentstorm-job-posts": "self.version"
     }
 }
