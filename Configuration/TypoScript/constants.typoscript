@@ -7,6 +7,8 @@ plugin.tx_hhtalentstormjobposts {
             apiKey =
             # cat=plugin.tx_hhtalentstormjobposts/talentstorm; type=integer; label=Storage PID
             storagePid =
+            # cat=plugin.tx_hhtalentstormjobposts/talentstorm; type=integer; label=API cache duration in seconds (default: 1 day = 86400)
+            apiCacheDuration = 86400
         }
     }
 }

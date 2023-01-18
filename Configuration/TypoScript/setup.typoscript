@@ -4,6 +4,7 @@ plugin.tx_hhtalentstormjobposts {
             apiUrl = {$plugin.tx_hhtalentstormjobposts.settings.talentstorm.apiUrl}
             apiKey = {$plugin.tx_hhtalentstormjobposts.settings.talentstorm.apiKey}
             storagePid = {$plugin.tx_hhtalentstormjobposts.settings.talentstorm.storagePid}
+            apiCacheDuration = {$plugin.tx_hhtalentstormjobposts.settings.talentstorm.apiCacheDuration}
         }
     }
 }

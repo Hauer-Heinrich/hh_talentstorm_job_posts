@@ -16,6 +16,7 @@ namespace HauerHeinrich\HhTalentstormJobPosts\Utility;
 // use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use \HauerHeinrich\HhSimpleJobPosts\Domain\Model\Jobpost;
+use \HauerHeinrich\HhSimpleJobPosts\Domain\Model\Address;
 
 final class TalentstormJobpostMapper {
     protected Jobpost $jobpost;
@@ -78,7 +79,31 @@ final class TalentstormJobpostMapper {
 
         // TODO:
         // all available Jobtypes = https://api.talentstorm.de/api/v1/jobtypes
-        $this->jobpost->setEmploymentType((string) $properties['idJobtype']);
+        $this->jobpost->setEmploymentType(\strval($properties['idJobtype']));
+
+
+        if(isset($properties['jobofferLocations']) && \is_array($properties['jobofferLocations'])) {
+            foreach ($properties['jobofferLocations'] as $key => $location) {
+                $locationData = $location['location'];
+
+                if(isset($locationData) && \is_array($locationData)) {
+                    $address = new Address;
+
+                    isset($locationData['label']) ? $address->setCompany($locationData['label']) : '';
+                    isset($locationData['street']) ? $address->setAddress($locationData['street']) : '';
+                    isset($locationData['city']) ? $address->setCity($locationData['city']) : '';
+                    isset($locationData['zip']) ? $address->setZip($locationData['zip']) : '';
+                    isset($locationData['region']) ? $address->setRegion($locationData['region']) : '';
+                    isset($locationData['country']['name']) ? $address->setCountry($locationData['country']['name']) : '';
+                    isset($locationData['lat']) ? $address->setLatitude($locationData['lat']) : '';
+                    isset($locationData['lon']) ? $address->setLongitude($locationData['lon']) : '';
+                    $address->setTxExtbaseType('ttAddress_location');
+
+                    $this->jobpost->addJobLocation($address);
+                }
+
+            }
+        }
 
         $this->jobpost->setSlug($properties['slug']);
 

@@ -51,10 +51,16 @@ final class TalentstormJobpostsListener {
         $this->settings = $extbaseFrameworkConfiguration['plugin.']['tx_hhtalentstormjobposts.']['settings.'];
     }
 
+    /**
+     * getExternalJobpostsFromApi
+     *
+     * @param JobpostsListEvent $event
+     * @return void
+     */
     public function getExternalJobpostsFromApi(JobpostsListEvent $event): void {
-        $values = $event->getAssignedValues();
-
         if(isset($event->getSettings()['useExternalApi']) && $event->getSettings()['useExternalApi'] === 'talentstorm') {
+            $values = $event->getAssignedValues();
+
             $this->talentstormRequest->setApiUrl($this->settings['talentstorm.']['apiUrl']);
             $this->talentstormRequest->setApiKey($this->settings['talentstorm.']['apiKey']);
             $response = $this->talentstormRequest->request();
@@ -62,6 +68,9 @@ final class TalentstormJobpostsListener {
             if(empty($response['error'])) {
                 $this->talentstormJobpostMapper->setDataArray($response, $values['jobsStorage']);
                 $values['jobposts'] = $this->talentstormJobpostMapper->mapMultipleArrayToObject();
+                $values['apiCacheDuration'] = isset($this->settings['talentstorm.']['apiCacheDuration']) ? $this->settings['talentstorm.']['apiCacheDuration'] : 86400;
+                $values['apiCacheDuration'] = 10;
+
                 $event->setAssignedValues($values);
 
                 return;
