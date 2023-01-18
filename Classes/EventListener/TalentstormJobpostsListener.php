@@ -66,7 +66,7 @@ final class TalentstormJobpostsListener {
             $response = $this->talentstormRequest->request();
 
             if(empty($response['error'])) {
-                $this->talentstormJobpostMapper->setDataArray($response, $values['jobsStorage']);
+                $this->talentstormJobpostMapper->setDataArray($response, $values['jobsStorageApi']);
                 $values['jobposts'] = $this->talentstormJobpostMapper->mapMultipleArrayToObject();
                 $values['apiCacheDuration'] = isset($this->settings['talentstorm.']['apiCacheDuration']) ? $this->settings['talentstorm.']['apiCacheDuration'] : 86400;
                 $values['apiCacheDuration'] = 10;
