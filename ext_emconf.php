@@ -11,7 +11,7 @@
  ***************************************************************/
 
 $EM_CONF['hh_talentstorm_job_posts'] = [
-    'title' => 'Hauer-Heinrich - Simple job posts',
+    'title' => 'Hauer-Heinrich - Talentstrom integration for EXT:hh_simple_job_posts',
     'description' => 'Add Talentstorm jobs for EXT: hh_simple_job_posts.',
     'category' => 'plugin',
     'author' => 'Christian Hackl',
@@ -19,10 +19,10 @@ $EM_CONF['hh_talentstorm_job_posts'] = [
     'state' => 'beta',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '1.0.4',
+    'version' => '1.0.5',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-10.4.99',
+            'typo3' => '10.4.0-11.5.99',
             'hh_simple_job_posts' => ''
         ],
         'conflicts' => [],
