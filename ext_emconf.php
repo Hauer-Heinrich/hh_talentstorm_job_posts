@@ -19,15 +19,20 @@ $EM_CONF['hh_talentstorm_job_posts'] = [
     'state' => 'beta',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '1.0.5',
+    'version' => '1.1.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-11.5.99',
+            'typo3' => '12.4.0-12.4.99',
             'hh_simple_job_posts' => ''
         ],
         'conflicts' => [],
         'suggests' => [
             'hh_seo' => ''
+        ],
+    ],
+    'autoload' => [
+        'psr-4' => [
+            'HauerHeinrich\\HhTalentstormJobPosts\\' => 'Classes'
         ],
     ],
 ];
