@@ -30,7 +30,7 @@
     },
     "require": {
         "typo3/cms-core": "^12.4.0",
-        "hauerheinrich/hh-simple-job-posts": "^1.5.0"
+        "hauerheinrich/hh-simple-job-posts": ">=4.2.0"
     },
     "autoload": {
         "psr-4": {

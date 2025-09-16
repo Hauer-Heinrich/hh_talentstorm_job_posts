@@ -19,11 +19,11 @@ $EM_CONF['hh_talentstorm_job_posts'] = [
     'state' => 'beta',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '1.1.0',
+    'version' => '1.2.0',
     'constraints' => [
         'depends' => [
             'typo3' => '12.4.0-12.4.99',
-            'hh_simple_job_posts' => ''
+            'hh_simple_job_posts' => '>=4.2.0'
         ],
         'conflicts' => [],
         'suggests' => [

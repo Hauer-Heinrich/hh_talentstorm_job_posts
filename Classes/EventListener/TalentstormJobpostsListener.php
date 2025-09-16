@@ -16,6 +16,7 @@ namespace HauerHeinrich\HhTalentstormJobPosts\EventListener;
 
 // use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use \HauerHeinrich\HhSimpleJobPosts\Event\JobpostsListEvent;
 use \HauerHeinrich\HhTalentstormJobPosts\Http\TalentstormRequest;
 use \HauerHeinrich\HhTalentstormJobPosts\Utility\TalentstormJobpostMapper;
@@ -47,8 +48,22 @@ final class TalentstormJobpostsListener {
      * set own extension typoscript settings
      */
     public function setSettings(): void {
-        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
         $this->settings = $extbaseFrameworkConfiguration['plugin.']['tx_hhtalentstormjobposts.']['settings.'];
+        if(
+            isset($extbaseFrameworkConfiguration['plugin.']['tx_hhsimplejobposts.']['settings.'])
+            && !empty($extbaseFrameworkConfiguration['plugin.']['tx_hhsimplejobposts.']['settings.'])
+        ) {
+
+            $this->settings = \array_merge_recursive($this->settings, $extbaseFrameworkConfiguration['plugin.']['tx_hhsimplejobposts.']['settings.']);
+        }
+        if(
+            isset($extbaseFrameworkConfiguration['plugin.']['tx_hhsimplejobposts.']['persistence.'])
+            && !empty($extbaseFrameworkConfiguration['plugin.']['tx_hhsimplejobposts.']['persistence.'])
+        ) {
+
+            $this->settings = \array_merge_recursive($this->settings, $extbaseFrameworkConfiguration['plugin.']['tx_hhsimplejobposts.']['persistence.']);
+        }
     }
 
     /**
@@ -66,7 +81,10 @@ final class TalentstormJobpostsListener {
             $response = $this->talentstormRequest->request();
 
             if(empty($response['error'])) {
-                $this->talentstormJobpostMapper->setDataArray($response, $values['jobsStorageApi']);
+                $this->talentstormJobpostMapper->setPid(\intval($values['jobsStorageApi']));
+                $this->talentstormJobpostMapper->setPidOrganizations(\intval($this->settings['storagePidOrganizations']));
+                $this->talentstormJobpostMapper->setPidContactPointAddresses(\intval($this->settings['storagePidContactPointAddresses']));
+                $this->talentstormJobpostMapper->setDataArray($response);
                 $values['jobposts'] = $this->talentstormJobpostMapper->mapMultipleArrayToObject();
                 $values['apiCacheDuration'] = isset($this->settings['talentstorm.']['apiCacheDuration']) ? $this->settings['talentstorm.']['apiCacheDuration'] : 86400;
                 $values['apiCacheDuration'] = 10;
