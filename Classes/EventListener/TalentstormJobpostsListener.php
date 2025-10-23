@@ -87,7 +87,6 @@ final class TalentstormJobpostsListener {
                 $this->talentstormJobpostMapper->setDataArray($response);
                 $values['jobposts'] = $this->talentstormJobpostMapper->mapMultipleArrayToObject();
                 $values['apiCacheDuration'] = isset($this->settings['talentstorm.']['apiCacheDuration']) ? $this->settings['talentstorm.']['apiCacheDuration'] : 86400;
-                $values['apiCacheDuration'] = 10;
 
                 $event->setAssignedValues($values);
 
