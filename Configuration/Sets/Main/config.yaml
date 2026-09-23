@@ -1,0 +1,5 @@
+name: hauerheinrich/hh-talentstorm-job-posts
+label: 'Hauer-Heinrich talentstorm, main set'
+
+dependencies:
+  - hauerheinrich/hh-simple-job-posts
